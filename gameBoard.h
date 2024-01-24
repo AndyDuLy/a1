@@ -1,4 +1,3 @@
-// gameboard.h
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
 
@@ -8,6 +7,7 @@
 #include <QMessageBox>
 
 #include "./cellButton.h"
+
 
 class GameBoard : public QWidget {
     Q_OBJECT
@@ -41,4 +41,4 @@ private:
     void showLosePopup();
 };
 
-#endif // GAMEBOARD_H
+#endif

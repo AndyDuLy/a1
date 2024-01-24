@@ -1,4 +1,3 @@
-# minesweeper.pro
 QT += core gui widgets
 
 SOURCES += \

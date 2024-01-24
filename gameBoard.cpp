@@ -1,8 +1,9 @@
-// gameboard.cpp
-#include "./gameBoard.h"
-#include "./cellButton.h"
 #include <QRandomGenerator>
 #include <QIcon>
+
+#include "./gameBoard.h"
+#include "./cellButton.h"
+
 
 GameBoard::GameBoard(int rows, int columns, int minesCount, QWidget *parent)
     : QWidget(parent), rows(rows), cols(columns), minesCount(minesCount) {
@@ -74,7 +75,7 @@ void GameBoard::handleCellClick(int row, int col) {
 void GameBoard::openCell(int row, int col) {
     CellButton *button = cells[row][col];
 
-    if (!button->isHidden()) return; // Cell is already open
+    if (!button->isHidden()) return;
 
     button->reveal();
 
@@ -117,12 +118,12 @@ void GameBoard::checkGameStatus() {
 }
 
 void GameBoard::showWinPopup() {
-    QMessageBox::information(this, "Congratulations!", "You won!\nDo you want to play again?");
+    QMessageBox::information(this, "Victory!", "Do you want to play again?");
     restartGame();
 }
 
 void GameBoard::showLosePopup() {
-    QMessageBox::critical(this, "Game Over", "You hit a mine!\nDo you want to play again?");
+    QMessageBox::critical(this, "Game Over!", "Do you want to play again?");
     restartGame();
 }
 

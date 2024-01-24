@@ -1,8 +1,8 @@
-// cellButton.h
 #ifndef CELLBUTTON_H
 #define CELLBUTTON_H
 
 #include <QPushButton>
+
 
 class CellButton : public QPushButton {
     Q_OBJECT
@@ -33,4 +33,4 @@ private:
     bool hidden;
 };
 
-#endif // CELLBUTTON_H
+#endif

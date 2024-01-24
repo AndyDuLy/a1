@@ -1,6 +1,7 @@
-// cellButton.cpp
-#include "./cellButton.h"
 #include <QIcon>
+
+#include "./cellButton.h"
+
 
 CellButton::CellButton(int row, int col, QWidget *parent)
     : QPushButton(parent), row(row), col(col), mine(false), mineCountValue(0), hidden(true) {
