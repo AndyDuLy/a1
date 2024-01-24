@@ -4,8 +4,8 @@
 #include <QRandomGenerator>
 #include <QIcon>
 
-GameBoard::GameBoard(QWidget *parent)
-    : QWidget(parent), gridLayout(new QGridLayout(this)), minesCount(99) {
+GameBoard::GameBoard(int rows, int columns, int minesCount, QWidget *parent)
+    : QWidget(parent), rows(rows), cols(columns), minesCount(minesCount) {
     setupBoard();
 }
 
@@ -124,4 +124,12 @@ void GameBoard::showWinPopup() {
 void GameBoard::showLosePopup() {
     QMessageBox::critical(this, "Game Over", "You hit a mine!\nDo you want to play again?");
     restartGame();
+}
+
+void GameBoard::restartGame() {
+    for (int row = 0; row < 16; ++row) {
+        for (int col = 0; col < 30; ++col) {
+            cells[row][col]->reset();
+        }
+    }
 }

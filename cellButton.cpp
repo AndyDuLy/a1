@@ -61,10 +61,8 @@ void CellButton::handleRightClick() {
 }
 
 void CellButton::reset() {
-    mine = false;
-    mineCountValue = 0;
-    hidden = true;
     setText("");
     setIcon(QIcon());
-    setStyleSheet("");
+    setStyleSheet("background-color: lightgray");
+    hidden = true;
 }

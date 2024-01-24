@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QGridLayout>
 #include <QVector>
+#include <QMessageBox>
 
 #include "./cellButton.h"
 

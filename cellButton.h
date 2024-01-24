@@ -16,12 +16,10 @@ public:
     void setMine(bool value);
     void setMineCount(int count);
     void reveal();
+    void reset();
 
 signals:
     void cellClicked(int row, int col);
-
-public slots:
-    void reset();
 
 private slots:
     void handleLeftClick();

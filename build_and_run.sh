@@ -9,7 +9,7 @@ sudo ldconfig
 
 # Build the Project
 echo "Building Minesweeper..."
-qmake minesweeper.pro
+qmake
 make
 
 # Check if the build was successful
