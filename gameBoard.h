@@ -5,18 +5,31 @@
 #include <QWidget>
 #include <QGridLayout>
 #include <QVector>
-#include "cellbutton.h"
+
+#include "./cellButton.h"
 
 class GameBoard : public QWidget {
     Q_OBJECT
 public:
-    GameBoard(QWidget *parent = nullptr);
+    GameBoard(int rows, int cols, int minesCount, QWidget *parent = nullptr);
+
     void restartGame();
 
 private slots:
     void handleCellClick(int row, int col);
 
 private:
+    GameBoard(QWidget *parent = nullptr);
+    
+    int rows;
+    int cols;  
+    int minesCount;
+
+    QGridLayout *gridLayout;
+    QVector<QVector<CellButton*>> cells;
+    
+    int countAdjacentMines(int row, int col) const;
+
     void setupBoard();
     void placeMines();
     void calculateHints();
@@ -25,10 +38,6 @@ private:
     void checkGameStatus();
     void showWinPopup();
     void showLosePopup();
-
-    QGridLayout *gridLayout;
-    QVector<QVector<CellButton*>> cells;
-    int minesCount;
 };
 
 #endif // GAMEBOARD_H

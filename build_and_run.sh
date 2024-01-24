@@ -2,9 +2,14 @@
 
 # Minesweeper Build and Run Script
 
+# Clear old files if exists and reset
+rm minesweeper
+make clean
+sudo ldconfig
+
 # Build the Project
 echo "Building Minesweeper..."
-qmake Minesweeper.pro
+qmake minesweeper.pro
 make
 
 # Check if the build was successful
@@ -15,4 +20,4 @@ fi
 
 # Run the Game
 echo "Running Minesweeper..."
-./Minesweeper
+./minesweeper

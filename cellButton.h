@@ -1,4 +1,4 @@
-// cellbutton.h
+// cellButton.h
 #ifndef CELLBUTTON_H
 #define CELLBUTTON_H
 
@@ -8,30 +8,31 @@ class CellButton : public QPushButton {
     Q_OBJECT
 public:
     CellButton(int row, int col, QWidget *parent = nullptr);
-    int getRow() const;
-    int getCol() const;
-    bool isMine() const;
-    int mineCount() const;
-    bool isHidden() const;
 
-public slots:
+    bool isMine() const;
+    bool isHidden() const;
+    int mineCount() const;
+
+    void setMine(bool value);
+    void setMineCount(int count);
     void reveal();
 
 signals:
-    void cellClicked(int row, int col, Qt::MouseButtons buttons);
+    void cellClicked(int row, int col);
 
-protected:
-    void mousePressEvent(QMouseEvent *event) override;
+public slots:
+    void reset();
 
-private:
+private slots:
+    void handleLeftClick();
     void handleRightClick();
 
+private:
     int row;
     int col;
     bool mine;
-    int mineCount;
-    bool flagged;
-    bool questioned;
+    int mineCountValue;
+    bool hidden;
 };
 
 #endif // CELLBUTTON_H
