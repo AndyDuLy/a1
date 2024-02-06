@@ -1,14 +1,11 @@
 #include <QApplication>
-
-#include "./gameBoard.h"
-#include "./cellButton.h"
-#include "./gameBoard.cpp"
-#include "./cellButton.cpp"
-
+#include "minesweeperwindow.h"
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
-    GameBoard game(16, 30, 99);
-    game.show();
+
+    MinesweeperWindow window;
+    window.show();
+
     return a.exec();
 }

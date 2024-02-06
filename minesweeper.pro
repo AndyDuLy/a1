@@ -2,12 +2,10 @@ QT += core gui widgets
 
 SOURCES += \
     main.cpp \
-    gameBoard.cpp \
-    cellButton.cpp
+    minesweeperwindow.cpp
 
 HEADERS += \
-    gameBoard.h \
-    cellButton.h
+    minesweeperwindow.h
 
 RESOURCES += \
     images.qrc

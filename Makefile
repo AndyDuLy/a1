@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = minesweeper1.0.0
-DISTDIR = /home/user/a1-final/a1/.tmp/minesweeper1.0.0
+DISTDIR = /home/user/a1-f/a1/.tmp/minesweeper1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1
 LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Core.so -lGL -lpthread   
@@ -52,13 +52,13 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = main.cpp qrc_images.cpp \
-		moc_gameBoard.cpp \
-		moc_cellButton.cpp
+SOURCES       = main.cpp \
+		minesweeperwindow.cpp qrc_images.cpp \
+		moc_minesweeperwindow.cpp
 OBJECTS       = main.o \
+		minesweeperwindow.o \
 		qrc_images.o \
-		moc_gameBoard.o \
-		moc_cellButton.o
+		moc_minesweeperwindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -144,8 +144,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		minesweeper.pro gameBoard.h \
-		cellButton.h main.cpp
+		minesweeper.pro minesweeperwindow.h main.cpp \
+		minesweeperwindow.cpp
 QMAKE_TARGET  = minesweeper
 DESTDIR       = 
 TARGET        = minesweeper
@@ -348,8 +348,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents gameBoard.h cellButton.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents minesweeperwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp minesweeperwindow.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -391,19 +391,13 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_gameBoard.cpp moc_cellButton.cpp
+compiler_moc_header_make_all: moc_minesweeperwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_gameBoard.cpp moc_cellButton.cpp
-moc_gameBoard.cpp: gameBoard.h \
-		cellButton.h \
+	-$(DEL_FILE) moc_minesweeperwindow.cpp
+moc_minesweeperwindow.cpp: minesweeperwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/user/a1-final/a1/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/user/a1-final/a1 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include gameBoard.h -o moc_gameBoard.cpp
-
-moc_cellButton.cpp: cellButton.h \
-		moc_predefs.h \
-		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/user/a1-final/a1/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/user/a1-final/a1 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include cellButton.h -o moc_cellButton.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/user/a1-f/a1/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/user/a1-f/a1 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include minesweeperwindow.h -o moc_minesweeperwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -421,20 +415,17 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 ####### Compile
 
-main.o: main.cpp gameBoard.h \
-		cellButton.h \
-		gameBoard.cpp \
-		cellButton.cpp
+main.o: main.cpp minesweeperwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
+
+minesweeperwindow.o: minesweeperwindow.cpp minesweeperwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o minesweeperwindow.o minesweeperwindow.cpp
 
 qrc_images.o: qrc_images.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_images.o qrc_images.cpp
 
-moc_gameBoard.o: moc_gameBoard.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_gameBoard.o moc_gameBoard.cpp
-
-moc_cellButton.o: moc_cellButton.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_cellButton.o moc_cellButton.cpp
+moc_minesweeperwindow.o: moc_minesweeperwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_minesweeperwindow.o moc_minesweeperwindow.cpp
 
 ####### Install
 
